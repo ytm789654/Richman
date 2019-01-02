@@ -50,17 +50,17 @@ void NodeEstate::StopAction(Player* pPlayer)
 
 	if (pOwner == pPlayer)		//是自己的地，询问造房子。
 	{
-		cout <<pPlayer->GetName()<< "，这是你自己的地盘。" << endl;
+		cout <<pPlayer->GetName()<< "，这是你自己的地盘." << endl;
 		if (this->GetCostLevel() < 3)
 		{
-			cout << "当前房屋等级为：" << this->GetCostLevel() << "，你是否加盖房屋？y/n" << endl;
+			cout << "当前房屋等级为：" << this->GetCostLevel() << "，你是否加盖房屋?y/n" << endl;
 			char flag;
 			cin >> flag;
 			if (flag == 'y')
 			{
 				if (pPlayer->GetMoney() < this->GetBuildCost())
 				{
-					cout << "你没有足够的现金！" << endl;
+					cout << "你没有足够的现金!" << endl;
 					return;
 				}
 				else
@@ -84,4 +84,10 @@ void NodeEstate::StopAction(Player* pPlayer)
 	pPlayer->CheckLose();
 	return;
 	//2018.12.31处理完毕人走到普通格子上的情况。接下来处理地图构建，以及处理人走格子的过程。
+}
+
+void NodeStart::PassAction(Player* pPlayer)
+{
+	pPlayer->AddMoney(PASS_STAET_MONEY);
+	cout << pPlayer->GetName() << "经过起点," << "增加现金" << PASS_STAET_MONEY << "元!" << endl;
 }

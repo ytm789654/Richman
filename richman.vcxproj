@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="map.h" />
     <ClInclude Include="node.h" />
     <ClInclude Include="player.h" />
   </ItemGroup>

@@ -5,6 +5,7 @@
 #include <string>
 using namespace std;
 
+#define PASS_STAET_MONEY 1000
 class Player;		//用了Player指针，所以要声明一下
 
 class NodeBase
@@ -14,7 +15,7 @@ public:
 	{
 		next = nullptr;
 	}
-	~NodeBase()
+	virtual ~NodeBase()
 	{
 		
 	}
@@ -116,5 +117,16 @@ private:
 	int m_Earn[4];		//别人停留收取费用
 	int m_Level;			//房屋等级
 	int m_BuildCost;	//建造费用
+};
+
+class NodeStart :public NodeBase
+{
+public:
+	NodeStart()
+		:NodeBase()
+	{
+
+	}
+	void PassAction(Player* pPlayer);
 };
 #endif
