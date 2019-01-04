@@ -1,4 +1,4 @@
-#include "node.h"
+﻿#include "node.h"
 #include<cstdlib>
 #include "player.h"
 
@@ -17,6 +17,7 @@ Player* NodeEstate::GetPlayerByOwnerId()
 	for (int i = 0;i < g_Players.size();i++)
 		if (this->GetOwnerId() == g_Players[i]->GetId())
 			return g_Players[i];
+	return nullptr;
 }
 
 bool NodeEstate::BeBought(Player* pPlayer)

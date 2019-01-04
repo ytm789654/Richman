@@ -1,11 +1,13 @@
 #include "player.h"
 #include "node.h"
 
+vector<Player*> g_Players;
+
 void Player::GameOver()
 {
 	cout << this->GetName() << "破产，退出游戏！" << endl;
 	vector<NodeEstate*> VecEstate = this->GetEstate();
-	for (int i = 0;i < VecEstate.size();i++)
+	for (size_t i = 0;i < VecEstate.size();i++)
 		VecEstate[i]->SetNodeNoOwner();
 	/*						
 	这里需要观察一下是不是要从g_Players删掉，同时删掉的时候要不要delete

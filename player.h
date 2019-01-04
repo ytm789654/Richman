@@ -8,11 +8,9 @@ using namespace std;
 class Player
 {
 public:
-	static int UsedId;
-	Player(int _Money, string _Name, bool _State = true)
-		:m_Money(_Money),m_Name(_Name),m_State(_State)
+	Player(int _Money, string _Name, int _Id=-1,bool _State = true)
+		:m_Money(_Money),m_Name(_Name),m_State(_State),m_Id(_Id)
 	{
-		m_Id = UsedId++;
 		cout << "Player:" << m_Name << " created!" << endl;
 	}
 	string GetName()

@@ -29,7 +29,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -115,9 +115,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="map.h" />
+    <ClInclude Include="GameMap.h" />
     <ClInclude Include="node.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="StringDeal.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

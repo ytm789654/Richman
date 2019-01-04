@@ -21,7 +21,10 @@
     <ClInclude Include="player.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="map.h">
+    <ClInclude Include="StringDeal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

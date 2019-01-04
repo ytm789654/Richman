@@ -1,4 +1,4 @@
-#ifndef __NODE__
+﻿#ifndef __NODE__
 #define __NODE__
 #include <iostream>
 #include <vector>
@@ -13,22 +13,40 @@ class NodeBase
 public:
 	NodeBase()
 	{
-		next = nullptr;
+		m_next = nullptr;
 	}
 	virtual ~NodeBase()
 	{
 		
 	}
+
+	void SetNextNode(NodeBase* _next)
+	{
+		m_next = _next;
+	}
+
+	NodeBase* GetNextNode()
+	{
+		return m_next;
+	}
+
 	virtual void StopAction(Player *pPlayer)	//停在这个点的事件
 	{
 		cout<<"Nothing when Stop!"<<endl;	
 	}	
+
 	virtual void PassAction(Player *pPlayer)	//路过这个点的事件
 	{
 		cout<<"Nothing when Pass!"<<endl;
 	} 
+
+	//输出节点信息，调试用
+	virtual void NodeDump()
+	{
+		cout << "This is a base node..." << endl;
+	}
 private:
-	NodeBase * next;
+	NodeBase * m_next;
 };
 
 class NodeChance:public NodeBase
@@ -39,19 +57,31 @@ public:
 	{
 		
 	}
+	~NodeChance()
+	{
+		cout << "NodeChance delete...." << endl;
+	}
+	void NodeDump()
+	{
+		cout << "NodeChance..." << endl;
+	}
 	void StopAction(Player *pPlayer);
 };
 
 class NodeEstate:public NodeBase	//可以买卖的Node
 {
 public: 
-	NodeEstate(int _BuyCost,int _cost0,int _cost1,int _cost2,int _cost3,int _Level = 0,int _BuildCost = 1500)
-	:NodeBase(),m_OwnerID(-1),m_Level(_Level),m_BuildCost(_BuildCost)
+	NodeEstate(string _Name,int _BuyCost,vector<int> _Earn,  int _BuildCost = 1500, int _Level = 0)
+	:NodeBase(),m_Name(_Name),m_BuyCost(_BuyCost),m_OwnerID(-1),m_Level(_Level),m_BuildCost(_BuildCost)
 	{
-		m_Earn[0] = _cost0;
-		m_Earn[1] = _cost1;
-		m_Earn[2] = _cost2;
-		m_Earn[3] = _cost3;
+		for (int i = 0;i < 4;i++)
+		{
+			m_Earn[i] = _Earn[i];
+		}
+	}
+	~NodeEstate()
+	{
+		cout << "节点" << m_Name << "析构完成................" << endl;
 	}
 	int GetOwnerId()
 	{
@@ -109,6 +139,15 @@ public:
 	bool BeBought(Player* pPlayer);
 	Player* GetPlayerByOwnerId();
 	void StopAction(Player *pPlayer);
+
+	void NodeDump()
+	{
+		cout << "输出节点" << m_Name << " 信息:" << endl;
+		cout << "节点名称:" << m_Name << endl;
+		cout << "购买费用:" << m_BuyCost << endl;
+		cout << "收入:" << m_Earn[0] << " " << m_Earn[1] << " " << m_Earn[2] << " " << m_Earn[3] << endl;
+		cout << "建造费用:" << m_BuildCost << endl;
+	}
 ;
 private:
 	int m_OwnerID;	//所有者ID
@@ -126,6 +165,14 @@ public:
 		:NodeBase()
 	{
 
+	}
+	~NodeStart()
+	{
+		cout << "开始节点析构完成" << endl;
+	}
+	void NodeDump()
+	{
+		cout << "这只是一个开始节点..." << endl;
 	}
 	void PassAction(Player* pPlayer);
 };

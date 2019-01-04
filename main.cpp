@@ -2,9 +2,15 @@
 #include <vector>
 #include "node.h"
 #include "player.h"
+#include "GameMap.h"
 
 int main()
 {
-	Player::UsedId = 0;
+	GameMap *TestMap = new GameMap();
+	TestMap->InitMapFromFile("testmap.mp");
+	TestMap->DumpMap();
+	delete TestMap;
+	char pause;
+	cin >> pause;
 	return 0;
 }
